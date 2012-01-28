@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  var socket = io.connect('http://localhost:13002');
+
+  // Connectivity 
+  socket.emit('username', '<%= current_user.email %>');
+
+  socket.on('reconnect', function () {
+    console.log('Reconnected to the server');
+    socket.emit('username', '<%= current_user.email %>');
+  });
+
+  socket.on('reconnecting', function () {
+    console.log('Attempting to re-connect to the server');
+  });
+
+  // Buyer Messages
+  socket.on('wassup', function(data) {
+    $('#notifications').append("<div class='notifications'>" + 
+      "Notification: " + data.message +
+      "</div>");
+  });
+
+</script>
+
+
+<div id="notifications"> </div>

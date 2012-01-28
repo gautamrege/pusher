@@ -1,0 +1,14 @@
+<%= render 'notifications' %>
+
+Welcome <%= current_user.email %>
+
+<%= link_to "Logout", destroy_user_session_path %>
+
+<%= form_tag notify_path do %>
+
+  To: <%= text_field_tag 'to' %>
+  Message: <%= text_field_tag 'message' %>
+
+  <%= submit_tag 'Send'%>
+
+<% end %>
